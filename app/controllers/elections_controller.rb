@@ -10,6 +10,8 @@ class ElectionsController < ApplicationController
     if @election != nil
     @candidate_list = [@election.candidate1, @election.candidate2, @election.candidate3, @election.candidate4, @election.candidate5]
     @candidate_list.delete("")
+  else
+    @candidate_list = []
   end
     respond_to do |format|
       format.html # index.html.erb
