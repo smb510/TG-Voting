@@ -3,8 +3,6 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Proxy</th>
-	<th>Assign Proxy</th>
 	<th></th>
     <th></th>
     <th></th>
@@ -13,36 +11,8 @@
 <% @users.each do |user| %>
   <tr>
     <td><%= user.name %></td>
-	<td>
-		<% if user.proxy_id == -2%>
-		Absent
-		<%elsif user.proxy_id == -1%>
-		No Proxy Specified
-		<%else%>
-		<%= User.find_by_id(user.proxy_id).name%>
-		<%end%>
-		</td>
-		<td>
-			<% if user.proxy_id == -1%>
-			<%= form_tag({:controller => "users", :action => "assign_proxy"})  do %>
-
-				<%= hidden_field_tag(:id, user.id)%>
-				<%= label_tag(:user, "Proxy Username")%>
-				<%= text_field_tag(:user)%>
-				
-				<%= submit_tag("Assign Proxy")%>
-				<%end%>
-			<% elsif user.proxy_id == -2%>
-			This user is a proxy and cannot be assigned one.	
-			<% elsif user.proxy_id > -1%>
-				<%= form_tag({:controller => "users", :action => "release_proxy"})  do %>
-					<%= hidden_field_tag(:id, user.proxy_id)%>
-					<%= hidden_field_tag(:user, user.name)%>
-
-					<%= submit_tag("Release Proxy")%>
-				<% end%>
-				<%end%>
-			
+	
+		
 			
 		</td>	
     <td><%= link_to 'Show', user %></td>
