@@ -1,5 +1,5 @@
 OTElections::Application.routes.draw do
-  root :to => "/login"
+  root :to => 'sessions#create'
    
   match "admin" => 'admin#index'
 
