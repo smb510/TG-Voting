@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  election_id: 1
+  user: 1
+  token: MyString
+  vote: 
+
+two:
+  election_id: 1
+  user: 1
+  token: MyString
+  vote: 

@@ -1,0 +1,23 @@
+<h1>Raw Vote Results</h1>
+    <% count = @raw_results.first[1].count%>
+<table>
+    <tr>
+        <th>Candidate</th>
+        <th>First Choice</th>
+        <th>Second Choice</th>
+        <th><% if count >= 3%>Third Choice<%end%></th>
+        <th><% if count >= 4%>Fourth Choice<%end%></th>
+        <th><% if count >= 5%>Fifth Choice<%end%></th>
+    </tr>
+    
+    <%@raw_results.each do |name, vote_list|%>
+        <tr>
+            <td><%= name %></td>
+            <td><%= vote_list[0] %></td>
+            <td><%= vote_list[1] %></td>
+            <% if count >= 3%><td><%= vote_list[2] %></td><%end%>
+            <% if count >= 4%><td><%= vote_list[3] %></td><%end%>
+            <% if count >= 5%><td><%= vote_list[4] %></td><%end%>
+            </tr>
+    <%end%>
+    </table>

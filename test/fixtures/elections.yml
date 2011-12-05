@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  position: Regent
+  candidate1: Mike Siegel
+  candidate2: Liz Leitner
+  candidate3: Adrienne Arndt
+  candidate4: Pi Chomvong
+  candidate5: Michael Beecham
+  irv: false
+  open: open
+
+two:
+  position: MyString
+  candidate1: MyString
+  candidate2: MyString
+  candidate3: MyString
+  candidate4: MyString
+  candidate5: MyString
+  irv: false
+  open: false

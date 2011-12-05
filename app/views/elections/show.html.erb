@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Position:</b>
+  <%= @election.position %>
+</p>
+
+<p>
+  <b>Candidate1:</b>
+  <%= @election.candidate1 %>
+</p>
+
+<p>
+  <b>Candidate2:</b>
+  <%= @election.candidate2 %>
+</p>
+
+<p>
+  <b>Candidate3:</b>
+  <%= @election.candidate3 %>
+</p>
+
+<p>
+  <b>Candidate4:</b>
+  <%= @election.candidate4 %>
+</p>
+
+<p>
+  <b>Candidate5:</b>
+  <%= @election.candidate5 %>
+</p>
+
+<p>
+  <b>Irv:</b>
+  <%= @election.irv %>
+</p>
+
+<p>
+  <b>Open:</b>
+  <%= @election.open %>
+</p>
+
+
+<%= link_to 'Edit', edit_election_path(@election) %> |
+<%= link_to 'Back', elections_path %>

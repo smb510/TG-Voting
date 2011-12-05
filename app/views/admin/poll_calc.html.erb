@@ -1,0 +1,15 @@
+<h1>Poll Results</h1>
+<h2>The percentage given is the percentage of the first-choice votes the candidate received<h2>
+    
+    <table>
+        <tr>
+        <th>Candidate</th>
+        <th>Percentage</th>
+        </tr>
+        <% @results.each do |result|%>
+            <tr>
+                <td><%= result[0]%></td>
+                <td><%= result[1]%></td>
+            </tr>
+        <% end %>
+        </table>

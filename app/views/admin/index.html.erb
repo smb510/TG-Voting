@@ -1,0 +1,41 @@
+<h1>Administrative interface</h1>
+<h2>For administrative tasks, such as counting votes, and viewing results various ways</h2>
+<p>Click "Instant Runoff" in order to calculate the votes based on <a href="http://en.wikipedia.org/wiki/Instant-runoff_voting">Instant Runoff Rules.</a> To see a proportional count, click "Poll Results." To see the raw numbers, click "Raw Results"</p>
+
+<table>
+    <tr>
+        <th>Position</th>
+        <th>Open?</th>
+        <th>Current Votes</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    
+    <%@elections.each do |election|%>
+        <tr>
+            <td><%= election.position%></td>
+            <td><%= form_tag({:controller => "elections", :action => "toggle_open_state"}, :method => :post) do%>
+                <%= hidden_field_tag(:id, election.id)%>
+                <% if election.open %>
+               <%= radio_button_tag(:state, "Open", :checked=>true)%>
+    			<%else%>
+    			<%= radio_button_tag(:state, "Open")%>
+    			<%end%>
+    			<%=label_tag(:state_Open, "Open")%>
+    			<%if election.open%>
+    			<%= radio_button_tag(:state, "Close")%>
+    			<%else%>
+    			<%= radio_button_tag(:state, "Close", :checked=>true)%>
+    			<%end%>
+    			<%=label_tag(:state_Close, "Close")%>
+    			<%= submit_tag("Change")%>
+    			<%end%></td>
+    			<td><%election.votes.count%></td>
+    			<td><%= link_to "Instant Runoff", runoff_url(:id => election.id)%></td>
+    			<td><%= link_to "Poll Results", poll_url(:id => election.id)%></td>
+    			<td><%= link_to "Raw Results", raw_results_url(:id => election.id)%></td>
+    			</tr>
+    			<%end%>
+    </table>
+    <%= link_to 'New Election', new_election_path %>			

@@ -1,4 +1,27 @@
 OTElections::Application.routes.draw do
+  match "admin" => 'admin#index'
+
+  match "admin/raw_results/:id" => 'admin#raw_results', :as => :raw_results
+
+  match "admin/irv_calc/:id" => 'admin#irv_calc', :as => :runoff
+
+  match "admin/poll_calc/:id" => 'admin#poll_calc', :as => :poll
+
+  post "election/toggle" => 'elections#toggle_open_state'
+  resources :elections
+  
+
+  root :to => "sessions#create"
+  resources :users
+  
+  match "elections/irv_vote" => 'elections#irv_vote'
+
+  
+  controller :sessions do
+     get 'login' => :new
+     post 'login' => :create
+     delete 'logout' => :destroy
+   end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

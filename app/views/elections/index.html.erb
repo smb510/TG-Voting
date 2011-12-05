@@ -1,0 +1,41 @@
+<h1>Here are a list of all open elections to vote.</h1>
+<h2>Please rank the candidates in preference order.</h2>
+<table>
+  <tr>
+    <th>Position</th>
+    <th>Candidate1</th>
+    <th>Candidate2</th>
+    <th>Candidate3</th>
+    <th>Candidate4</th>
+    <th>Candidate5</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @elections.each do |election| %>
+  <tr>
+    <td><%= election.position %></td>
+    <% #if election.irv%>
+    <%= form_tag({:controller=> "elections", :action => "irv_vote"}, :remote => true, :class => "vote_form") do%>
+    
+     <td><%= select_tag "first_choice", options_for_select(@candidates_list), :class => "preference"%></td>
+     <td><%= select_tag "second_choice", options_for_select(@candidates_list), :class => "preference"%></td>
+     <td><% if election.candidate3 != ""%>
+     <%= select_tag "third_choice", options_for_select(@candidates_list), :class => "preference"%><% end%></td>
+     <td><% if election.candidate4 != ""%>
+      <%= select_tag "fourth_choice", options_for_select(@candidates_list), :class => "preference"%><% end%></td>
+      <td><% if election.candidate5 != ""%>
+       <%= select_tag "fifth_choice", options_for_select(@candidates_list), :class => "preference"%><% end%></td>
+       <%= hidden_field_tag 'election', election.id%>
+       <td><%= submit_tag("Cast Vote")%></td></tr>
+     <% end%>
+   
+<% end %>
+</table>
+
+<br />
+
+

@@ -1,0 +1,15 @@
+<div class="login_form">
+<h1>Log in to gain access to Tau Gamma Voting</h1>
+
+
+<div class="login_form">
+	<%= form_tag(:method => :post) do%>
+		<label for="username">User Name:</label>
+		<%= text_field_tag :name, params[:name]%>
+		<label for="password">Password</label>
+		<%= password_field_tag :password, params[:password]%>
+		<%= submit_tag "Log In"%>
+		
+	<% end%>
+	
+</div>
