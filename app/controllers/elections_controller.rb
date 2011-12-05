@@ -8,8 +8,8 @@ class ElectionsController < ApplicationController
     @elections = Election.where("open = ?", true)
     @user = User.find_by_id(session[:user_id])
     e1 = @elections.first
-    @candidates_list = [e1.candidate1, e1.candidate2, e1.candidate3, e1.candidate4, e1.candidate5]
-    @candidates_list.delete("")
+    #@candidates_list = [e1.candidate1, e1.candidate2, e1.candidate3, e1.candidate4, e1.candidate5]
+    #@candidates_list.delete("")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @elections }
