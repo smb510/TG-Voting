@@ -1,4 +1,6 @@
 OTElections::Application.routes.draw do
+  root :to => "sessions#create"
+   
   match "admin" => 'admin#index'
 
   match "admin/raw_results/:id" => 'admin#raw_results', :as => :raw_results
@@ -7,15 +9,12 @@ OTElections::Application.routes.draw do
 
   match "admin/poll_calc/:id" => 'admin#poll_calc', :as => :poll
 
-  post "election/toggle" => 'elections#toggle_open_state'
-  resources :elections
   
-
-  root :to => "sessions#create"
+  resources :elections
   resources :users
   
   match "elections/irv_vote" => 'elections#irv_vote'
-
+  post "election/toggle" => 'elections#toggle_open_state'
   
   controller :sessions do
      get 'login' => :new

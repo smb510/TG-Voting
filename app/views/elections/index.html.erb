@@ -14,7 +14,9 @@
     <th></th>
     <th></th>
   </tr>
-
+<%if @elections == nil%>
+There are no open elections to vote on at this time.
+<%else %>
 <% @elections.each do |election| %>
   <tr>
     <td><%= election.position %></td>
@@ -35,7 +37,7 @@
    
 <% end %>
 </table>
-
+<%end%>
 <br />
 
 
