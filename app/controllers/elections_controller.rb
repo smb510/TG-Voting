@@ -7,8 +7,10 @@ class ElectionsController < ApplicationController
   def index
     @election = Election.where("open = ?", true).first
     @user = User.find_by_id(session[:user_id])
+    if @election != nil
     @candidate_list = [@election.candidate1, @election.candidate2, @election.candidate3, @election.candidate4, @election.candidate5]
     @candidate_list.delete("")
+  end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @elections }

@@ -19,7 +19,6 @@ There are no open elections to vote on at this time.
 <%else %>
   <tr>
     <td><%= @election.position %></td>
-    <% #if election.irv%>
     <%= form_tag({:controller=> "elections", :action => "irv_vote"}, :remote => true, :class => "vote_form") do%>
     
      <td><%= select_tag "first_choice", options_for_select(@candidates_list), :class => "preference"%></td>
