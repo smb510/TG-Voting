@@ -14,10 +14,10 @@
     <th></th>
     <th></th>
   </tr>
-<%if @elections == nil%>
+<%if @election == nil%>
 There are no open elections to vote on at this time.
 <%else %>
-<% @elections.each do |election| %>
+<% @election.each do |election| %>
   <tr>
     <td><%= election.position %></td>
     <% #if election.irv%>
