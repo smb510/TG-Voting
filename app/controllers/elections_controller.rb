@@ -5,11 +5,10 @@ class ElectionsController < ApplicationController
   skip_before_filter :authorize, :only => [:irv_vote]
   
   def index
-    @elections = Election.where("open = ?", true)
+    @election = Election.where("open = ?", true).first
     @user = User.find_by_id(session[:user_id])
-    e1 = @elections.first
-    #@candidates_list = [e1.candidate1, e1.candidate2, e1.candidate3, e1.candidate4, e1.candidate5]
-    #@candidates_list.delete("")
+    @candidate_list = [@election.candidate1, @election.candidate2, @election.candidate3, @election.candidate4, @election.candidate5]
+    @candidates_list.delete("")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @elections }
