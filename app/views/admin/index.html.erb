@@ -31,7 +31,7 @@
     			<%=label_tag(:state_Close, "Close")%>
     			<%= submit_tag("Change")%>
     			<%end%></td>
-    			<%if election.vote != nil%>
+    			<%if election.votes != nil%>
     			<td><%election.votes.count%></td>
     			<% else%>
     			<td>0</td>
