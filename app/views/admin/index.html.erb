@@ -35,7 +35,7 @@
     			<%= submit_tag("Change")%>
     			<%end%></td>
     			<%if election.votes != nil%>
-    			<td><%election.votes.count%></td>
+    			<td><%= election.votes.count%></td>
     			<% else%>
     			<td>0</td>
     			<%end%>
