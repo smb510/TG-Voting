@@ -35,17 +35,11 @@ class ElectionsController < ApplicationController
        end
     @vote = @election.votes.build(:user => session[:user_id], :vote => pref_list, :token => session[:user_id].to_s + "#" + @election.id.to_s)
     if @vote.save
-      if request.xhr?
-        render :status => 200, :text => "Vote was successful."
-      else
-        redirect_to elections_url, :notice => "Vote Was successful."
-      end
+        flash[:notice] = "Vote Recorded!"
+        redirect_to elections_url
     else
-      if request.xhr?
-        render :status => 403, :text => "Error. Vote was not recorded.  Please reload and try again."
-      else
-        redirect_to elections_url, :text => "Error. Vote was not recorded.  Please reload and try again."
-      end
+        flash[:error] = "Error. Try Again."
+        redirect_to elections_url
     end
   end
 
@@ -115,9 +109,12 @@ class ElectionsController < ApplicationController
       elsif params[:state] == "Close"
         @election.open = false
       end
-      @election.save
-      redirect_to admin_url
+      if @election.save
+        flash[:notice] = "State Changed Successfully"
+         redirect_to admin_url
+       end
   end
+
 
   # DELETE /elections/1
   # DELETE /elections/1.json
@@ -126,7 +123,8 @@ class ElectionsController < ApplicationController
     @election.destroy
 
     respond_to do |format|
-      format.html { redirect_to elections_url }
+      format.html { flash[:notice] = "Election Deleted"
+         redirect_to admin_url }
       format.json { head :ok }
     end
   end

@@ -6,19 +6,19 @@ class ApplicationController < ActionController::Base
   protected
     def authorize
       unless User.find_by_id(session[:user_id])
-        redirect_to 'sessions/new', :notice => "Please Log In"
+        redirect_to login_url, :notice => "Please Log In"
       end
     end
     
     def authorize_admin
       unless ["mplis", "scbiddle", "msiege", "nitinp"].include?(session[:user_name])
-        redirect_to questions_url, :notice => "You cannot see that page"
+        redirect_to elections_url, :notice => "You cannot see that page"
       end
     end
     
     def ensure_proxy
       unless User.find_by_id(session[:user_id]).proxy_id > 0
-        redirect_to questions_url, :notice => "You are not a proxy."
+        redirect_to elections_url, :notice => "You are not a proxy."
     end
   end
   

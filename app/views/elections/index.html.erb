@@ -1,3 +1,10 @@
+<div class="main">
+    <div class="notice">
+    <%= flash[:notice]%>
+    </div>
+    <div class="error">
+        <%= flash[:error]%>
+    </div>
 <h1>Here are a list of all open elections to vote.</h1>
 <h2>Please rank the candidates in preference order.</h2>
 <table>
@@ -18,8 +25,8 @@
 There are no open elections to vote on at this time.
 <%else %>
   <tr>
-    <td><%= @election.position %></td>
-    <%= form_tag({:controller=> "elections", :action => "irv_vote"}, :class => "vote_form") do%>
+    <td class="voting"><%= @election.position %></td>
+    <%= form_tag({:controller=> "elections", :action => "irv_vote"}, :class => "vote_form", :method => :post) do%>
     
      <td><%= select_tag "first_choice", options_for_select(@candidate_list), :class => "preference"%></td>
      <td><%= select_tag "second_choice", options_for_select(@candidate_list), :class => "preference"%></td>
@@ -30,12 +37,12 @@ There are no open elections to vote on at this time.
       <td><% if @election.candidate5 != ""%>
        <%= select_tag "fifth_choice", options_for_select(@candidate_list), :class => "preference"%><% end%></td>
        <%= hidden_field_tag 'election', @election.id%>
-       <td><%= submit_tag("Cast Vote")%></td></tr>
+       <td class="result"><%= submit_tag("Cast Vote")%></td></tr>
      <% end%>
    
 
 </table>
 <%end%>
-<br />
+</div>
 
 

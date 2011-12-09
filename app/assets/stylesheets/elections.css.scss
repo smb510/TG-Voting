@@ -1,3 +1,40 @@
 // Place all the styles related to the Elections controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.main
+{
+    
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #666;
+    padding:10px;
+    margin-top:20px;
+    
+    height:100%;
+    
+    
+}
+
+.top
+{
+    background-color:#666;
+    
+}
+
+.top a:selected
+{
+    background-color:#888;
+    
+}
+.notice
+{
+    background-color: #fff;
+    color:green;
+}
+.error
+{
+    background-color:#fff;
+    color: red;
+}

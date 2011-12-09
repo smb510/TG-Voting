@@ -14,7 +14,7 @@ OTElections::Application.routes.draw do
   resources :users
   
   match "elections/irv_vote" => 'elections#irv_vote'
-  post "election/toggle" => 'elections#toggle_open_state'
+  post "election/toggle_open_state" => 'elections#toggle_open_state'
   
   controller :sessions do
      get 'login' => :new

@@ -2,12 +2,19 @@
 <html>
 <head>
   <title>OTVoting</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
+  <%= stylesheet_link_tag "application" %>
+  <link href='http://fonts.googleapis.com/css?family=Fresca' rel='stylesheet' type='text/css'>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tag %>
 </head>
 <body>
+    <div class="top">
+    <%= link_to "Log Out", logout_path, :method => :delete%>
+        <a href="https://docs.google.com/document/d/1wClMrsASHTX03oOhlRWts3PBWEWW9TRssPJe8gPyrus/edit?hl=en_US">Elections Packet</a>
+    </div>
 <%= yield %>
-<%= link_to "Log Out", logout_path, :method => :delete%>
+<div id="bottom-bar">
+    
+</div>
 </body>
 </html>

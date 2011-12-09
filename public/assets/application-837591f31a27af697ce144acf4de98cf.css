@@ -1,0 +1,97 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+*/
+
+/* line 6, /Users/smb510/Sites/OTElections/app/assets/stylesheets/elections.css.scss */
+.main {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #666;
+  padding: 10px;
+  margin-top: 20px;
+  height: 100%;
+}
+/* line 1, /Users/smb510/Sites/OTElections/app/assets/stylesheets/scaffolds.css.scss */
+body {
+  /*background-color: #fff;*/
+  background-image: url(/assets/fiber-d2649216381ea782de79c402a71021d4.jpg);
+  background-repeat: repeat;
+  color: white;
+  font-family: 'Fresca', arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/* line 10, /Users/smb510/Sites/OTElections/app/assets/stylesheets/scaffolds.css.scss */
+p, ol, ul, td {
+  font-family: 'Fresca', arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/* line 15, /Users/smb510/Sites/OTElections/app/assets/stylesheets/scaffolds.css.scss */
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+/* line 20, /Users/smb510/Sites/OTElections/app/assets/stylesheets/scaffolds.css.scss */
+a {
+  color: #fff;
+}
+/* line 22, /Users/smb510/Sites/OTElections/app/assets/stylesheets/scaffolds.css.scss */
+a:visited {
+  color: #fff;
+}
+/* line 24, /Users/smb510/Sites/OTElections/app/assets/stylesheets/scaffolds.css.scss */
+a:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+/* line 29, /Users/smb510/Sites/OTElections/app/assets/stylesheets/scaffolds.css.scss */
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+/* line 32, /Users/smb510/Sites/OTElections/app/assets/stylesheets/scaffolds.css.scss */
+#notice {
+  color: green;
+}
+
+/* line 35, /Users/smb510/Sites/OTElections/app/assets/stylesheets/scaffolds.css.scss */
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+/* line 40, /Users/smb510/Sites/OTElections/app/assets/stylesheets/scaffolds.css.scss */
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+/* line 47, /Users/smb510/Sites/OTElections/app/assets/stylesheets/scaffolds.css.scss */
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+/* line 56, /Users/smb510/Sites/OTElections/app/assets/stylesheets/scaffolds.css.scss */
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
