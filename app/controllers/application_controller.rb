@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     end
     
     def authorize_admin
-      unless ["mplis", "scbiddle", "msiege", "nitinp"].include?(session[:user_name])
+      unless ["mplis", "scbiddle", "lrodgers", "csar", "travism"].include?(session[:user_name])
         redirect_to elections_url, :notice => "You cannot see that page"
       end
     end

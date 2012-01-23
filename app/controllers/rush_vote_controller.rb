@@ -1,6 +1,7 @@
 require 'set'
 
 class RushVoteController < ApplicationController
+  skip_before_filter :authorize_admin, :only => [select, vote]
   def new
      @rushvote = RushVote.new
 
