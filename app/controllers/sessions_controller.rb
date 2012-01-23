@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if user = User.authenticate(params[:name], params[:password])
       session[:user_id] = user.id
       session[:user_name] = user.name
-      redirect_to elections_url
+      redirect_to rushvotes_url
     else
       redirect_to login_url, :alert => "Login unsuccessful"
     end
