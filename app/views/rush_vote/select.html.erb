@@ -1,0 +1,14 @@
+<h1>Select your top seven rushes here.</h1>
+
+<%= form_tag({:controller=> "rush_vote", :action => "vote"}, :class => "vote_form", :method => :post) do%>
+   
+    Choice 1:<%= select_tag "choice1", options_for_select(@rush_list), :class => "preference"%><br />
+    Choice 2:<%= select_tag "choice2", options_for_select(@rush_list), :class => "preference"%><br />
+Choice 3:<%= select_tag "choice3", options_for_select(@rush_list), :class => "preference"%><br />
+Choice 4:<%= select_tag "choice4", options_for_select(@rush_list), :class => "preference"%><br />
+Choice 5:<%= select_tag "choice5", options_for_select(@rush_list), :class => "preference"%><br />
+Choice 6:<%= select_tag "choice6", options_for_select(@rush_list), :class => "preference"%><br />
+Choice 7:<%= select_tag "choice7", options_for_select(@rush_list), :class => "preference"%><br />
+   
+      <td class="result"><%= submit_tag("Cast Vote")%></td></tr>
+    <% end%>

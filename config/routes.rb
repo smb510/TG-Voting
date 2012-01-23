@@ -1,4 +1,14 @@
 OTElections::Application.routes.draw do
+  get "rush_vote/new", :as => :thanks
+
+  get "rush_vote/select"
+
+  match "rush_vote/vote" => 'rush_vote#vote', :as => :rushvotes
+
+  get "rush_vote/tally"
+
+  resources :rushes
+
   root :to => 'sessions#create'
    
   match "admin" => 'admin#index'

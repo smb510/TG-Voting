@@ -1,0 +1,14 @@
+<h1>Vote Counts</h1>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Count</th>
+	</tr>
+<% @votes.keys.each do |vote|%>
+<tr>
+	<td><%= vote%></td>
+	<td><%= @votes[vote]%></td>
+</tr>
+<% end%>
+
+

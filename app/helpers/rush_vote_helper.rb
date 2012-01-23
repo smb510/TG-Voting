@@ -1,0 +1,2 @@
+module RushVoteHelper
+end

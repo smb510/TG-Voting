@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @rush.name %>
+</p>
+
+<p>
+  <b>Mentions:</b>
+  <%= @rush.mentions %>
+</p>
+
+
+<%= link_to 'Edit', edit_rush_path(@rush) %> |
+<%= link_to 'Back', rushes_path %>

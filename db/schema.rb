@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111205045831) do
+ActiveRecord::Schema.define(:version => 20120123044727) do
 
   create_table "elections", :force => true do |t|
     t.string   "position"
@@ -21,6 +21,20 @@ ActiveRecord::Schema.define(:version => 20111205045831) do
     t.string   "candidate5"
     t.boolean  "irv"
     t.boolean  "open"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rush_votes", :force => true do |t|
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "vote"
+  end
+
+  create_table "rushes", :force => true do |t|
+    t.string   "name"
+    t.integer  "mentions"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
