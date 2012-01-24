@@ -1,7 +1,7 @@
 OTElections::Application.routes.draw do
   get "rush_vote/new", :as => :thanks
 
-  get "rush_vote/select"
+  get "rush_vote/select", :as => :rush_voting
 
   match "rush_vote/vote" => 'rush_vote#vote', :as => :rushvotes
 
