@@ -69,6 +69,25 @@ class RushesController < ApplicationController
     end
   end
   
+  def many_rushes_new
+    @rush_string = params[:rushes]
+    @rush_string = @rush_string.split('\n')
+    @rush_string.each do |rush|
+      @rush = Rush.new
+      @rush.name = rush
+      @rush.save
+    end
+     respond_to do |format|
+        if @rush.save
+          format.html { redirect_to rushes_url, :notice => 'Rushes was successfully created.' }
+          format.json { render :json => @rush, :status => :created, :location => @rush }
+        else
+          format.html { render :action => "new" }
+          format.json { render :json => @rush.errors, :status => :unprocessable_entity }
+        end
+      end
+  end
+  
   
 
   # DELETE /rushes/1
