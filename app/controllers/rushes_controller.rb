@@ -69,6 +69,7 @@ class RushesController < ApplicationController
     end
   end
   
+  =begin
   def many_rushes_new
     @rush_string = params[:rushes]
     @rush_string = @rush_string.split('\n')
@@ -87,7 +88,7 @@ class RushesController < ApplicationController
         end
       end
   end
-  
+  =end
   
 
   # DELETE /rushes/1
