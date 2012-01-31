@@ -1,4 +1,4 @@
-
+<%= javascript_include_tag "all_rush_results"%>
 <h1>All Results</h1>
 <h2><%= @total.to_s %></h2>
 <%if @totals == nil%>
@@ -21,7 +21,8 @@
 			<%= result[1] %>
 			
 		</td>
-		<!--td>
+		<span class="detailed_results">
+		<td>
 			No:<%= result[2] %>
 			</td>
 			<td>
@@ -29,9 +30,12 @@
 				</td>
 				<td>
 					Abs:<%= result[4]%>
-					</td-->
+					</td>
+					</span>
 </tr>
 <%end%>
 </table>
+
+<input type="button" value="Show/Hide Detailed Results" class="show-hide">
 
 <%= link_to "Advance Round", clear_round_url, :confirm => "This action will delete all questions that do not need a revote, and clear all votes.  It cannot be undone. Are you sure?"%>
