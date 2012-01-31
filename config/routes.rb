@@ -9,7 +9,7 @@ OTElections::Application.routes.draw do
 
   resources :rushes
   
-  get 'rushes', 'rushes#index', :as => :rushes
+  #get 'rushes', 'rushes#index', :as => :rushes
 
   root :to => 'sessions#create'
    
