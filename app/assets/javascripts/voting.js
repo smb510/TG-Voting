@@ -4,7 +4,7 @@ $(document).ready(function()
 	
 	$('form').submit(function(event)
 	{
-		var MAX_YES = 10;
+		var MAX_YES = 3;
 		event.preventDefault();
 		var t = $(this);
 		if($(".Yes").size() >= MAX_YES && t.find("#vote_Yes:checked").size() == 1)
@@ -28,7 +28,7 @@ $(document).ready(function()
 			
 			error : function(data, textStatus, xhr)
 			{
-				alert("Your vote could not be registered.  Either you have already voted this round, or an unknown error occurred.");
+				//alert("Your vote could not be registered.  Either you have already voted this round, or an unknown error occurred." + textStatus);
 				t.parent().parent().find('.notes').html("Error.");
 				return false;
 			}	

@@ -1,7 +1,7 @@
 <h1>Deliberations Administrative Interface</h1>
 <h2>Use this to add rushes, view results of a vote, and open and close rushes for voting</h2>
 <%= flash[:notice]%><br />
-<%= link_to "Open All", open_questions_url%> | <%= link_to "Close All", close_questions_url%> | <%= link_to "Go to voting page", questions_url%>
+<%= link_to "Open All", open_rushes_url%> | <%= link_to "Close All", close_rushes_url%> | <%= link_to "Go to voting page", rushes_url%>
 <table>
 	<tr><th>Rush Name</th><th>Open/Closed</th><th>View results</th><th>Delete</th></tr>
 	<% @rushes.each do |rush|%>
@@ -15,7 +15,7 @@
 			<%= radio_button_tag(:state, "Open")%>
 			<%end%>
 			<%=label_tag(:state_Open, "Open")%>
-			<%if question.open%>
+			<%if rush.open%>
 			<%= radio_button_tag(:state, "Close")%>
 			<%else%>
 			<%= radio_button_tag(:state, "Close", :checked=>true)%>

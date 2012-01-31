@@ -1,9 +1,12 @@
 class RushesController < ApplicationController
   # GET /rushes
   # GET /rushes.json
+  skip_before_filter :authorize_admin
+  
+  
   def index
     @rushes = Rush.where("open= ?", true)
-    @user = user.find_by(session[:user_id])
+    @user = User.find_by_id(session[:user_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -46,13 +49,15 @@ class RushesController < ApplicationController
 
     respond_to do |format|
       if @rush.save
-        format.html { redirect_to @rush, :notice => 'Rush was successfully created.' }
+        format.html { redirect_to rush_index_url, :notice => 'Rush was successfully created.' }
         format.json { render :json => @rush, :status => :created, :location => @rush }
       else
         format.html { render :action => "new" }
         format.json { render :json => @rush.errors, :status => :unprocessable_entity }
       end
     end
+    
+    redirect_to rush_index_url
   end
 
   # PUT /rushes/1
@@ -79,7 +84,7 @@ class RushesController < ApplicationController
     @rush.destroy
 
     respond_to do |format|
-      format.html { redirect_to rushes_url }
+      format.html { redirect_to rush_index_url }
       format.json { head :ok }
     end
   end
@@ -89,7 +94,7 @@ class RushesController < ApplicationController
     @vote = @rush.delib_votes.build(:user => session[:user_id], :vote => params[:vote], :token => session[:user_id].to_s + "#" + @rush.id.to_s)
     if @vote.save
       if request.xhr?
-        render :status => 200, :text = @vote.vote
+        render :status => 200, :text => @vote.vote
       else
         redirect_to rushes_url, :notice => "Your vote was recorded."
       end
@@ -111,7 +116,7 @@ class RushesController < ApplicationController
         end
         @rush.save
         redirect_to admin_url
-    end
+  
   end
   
   def open_all
@@ -120,7 +125,7 @@ class RushesController < ApplicationController
       rush.open = true
       rush.save
     end
-    redirect_to admin_url, :notice => "All Rushes Now Open For Voting"
+    redirect_to rush_index_url, :notice => "All Rushes Now Open For Voting"
   end
   
   def close_all
@@ -129,9 +134,8 @@ class RushesController < ApplicationController
       rush.open = false
       rush.save
     end
-    redirect_to admin_url, :notice => "All Rushes Now Closed for Voting"
+    redirect_to rush_index_url, :notice => "All Rushes Now Closed for Voting"
   end
     
-  
-  
 end
+

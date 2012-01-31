@@ -41,7 +41,7 @@ OTElections::Application.routes.draw do
    
    post "vote" => "rushes#vote"
    
-   match "admin/rush_index" => "admin#rush_index"
+   match "admin/rush_index" => "admin#rush_index", :as => :rush_index
    
    match "admin/:id/results" => 'admin#rush_results', :as => :results
    
