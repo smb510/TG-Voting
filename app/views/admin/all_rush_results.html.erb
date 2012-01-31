@@ -1,0 +1,37 @@
+
+<h1>All Results</h1>
+<h2><%= @total.to_s %></h2>
+<%if @totals == nil%>
+<% @totals = ["FAIL"]%>
+<%end%>
+<table>
+	
+<% @totals.each do |name, result|%>
+	<tr>
+		<td><%= name%></td>
+		<% if result[0] == "ADMIT"%>
+		<td class="admit">
+			<% elsif result[0] == "REJECT"%>
+			<td class="reject">
+				<%else%>
+				<td>
+					<% end%>
+		<%= result[0]%></td>
+		<td>
+			<%= result[1] %>
+			
+		</td>
+		<!--td>
+			No:<%= result[2] %>
+			</td>
+			<td>
+				Yes: <%= result[3]%>
+				</td>
+				<td>
+					Abs:<%= result[4]%>
+					</td-->
+</tr>
+<%end%>
+</table>
+
+<%= link_to "Advance Round", clear_round_url, :confirm => "This action will delete all questions that do not need a revote, and clear all votes.  It cannot be undone. Are you sure?"%>

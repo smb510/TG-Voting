@@ -2,6 +2,111 @@ class AdminController < ApplicationController
   def index
     @elections = Election.all
   end
+  
+  def rush_index
+    @rushes = Rush.all
+  end
+  
+  def next_round
+    @rushes = Rush.all
+    @rushes.each do |rush|
+      votes = rush.delib_votes
+      yes = 0
+      no = 0
+      abstain = 0
+      total = votes.count.to_f
+      votes.each do |vote|
+        if vote.vote == "Yes"
+          yes += 1
+        end
+        if vote.vote =="No"
+          no += 1
+        end
+        if vote.vote == "Abstain"
+          abstain += 1
+        end
+        vote.destroy
+      end
+      percent_yes = yes.to_f / total
+      percent_no = no.to_f / total
+      percent_abstain = abstain.to_f / total
+      @result = "INVALID DATA"
+      if yes >= 43 && no < 8
+        rush.destroy
+      elsif no > 8
+        rush.destroy
+      end
+    end
+    redirect_to admin_url
+  end
+  
+  
+  def rush_results
+    @rush = Rush.find_by_id(params[:id])
+    @votes = @rush.delib_votes
+    @yes = 0
+    @no = 0
+    @abstain = 0
+    @total = @votes.count
+    
+    @votes.each do |vote|
+      if vote.vote == "Yes"
+        @yes += 1
+      end
+      if vote.vote =="No"
+        @no += 1
+      end
+      if vote.vote == "Abstain"
+        @abstain += 1
+      end
+    end
+    @percent_yes = @yes.to_f / @total.to_f
+    @percent_no = @no.to_f / @total.to_f
+    @percent_abstain = @abstain.to_f / @total.to_f
+    @result = "NO DATA"
+    if @yes >= 36 && @no < 7
+      @result = "ADMIT"
+    elsif @no >= 7
+      @result = "REJECT"
+    else
+      @result = "REVOTE"
+    end
+  end
+  
+  def all_rush_results
+     @rushes = Rush.all
+    @totals = {}
+    @rushes.each do |rush|
+      votes = rush.delib_votes
+      @yes = 0
+      @no = 0
+      @abstain = 0
+      total = votes.count.to_f
+      votes.each do |vote|
+        if vote.vote == "Yes"
+          @yes += 1
+        end
+        if vote.vote =="No"
+          @no += 1
+        end
+        if vote.vote == "Abstain"
+          @abstain += 1
+        end
+      end
+      percent_yes = @yes.to_f / total
+      percent_no = @no.to_f / total
+      percent_abstain = @abstain.to_f / total
+      @result = "INVALID DATA"
+      if @yes >= 36 && @no < 7
+        @result = "ADMIT"
+      elsif @no >= 7
+        @result = "REJECT"
+      else
+        @result = "REVOTE"
+      end
+      @totals[rush.name] =  [@result, total, @no, @yes, @abstain]
+    end
+  end
 
   def raw_results
     @votes = Election.find_by_id(params[:id]).votes

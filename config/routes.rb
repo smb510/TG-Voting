@@ -31,6 +31,24 @@ OTElections::Application.routes.draw do
      post 'login' => :create
      delete 'logout' => :destroy
    end
+   
+   match 'rushes/delete/:id' => "rushes#destroy", :as => :del_rushes
+   
+   match "/openall" => "rushes#open_all", :as => :open_rushes
+   match "/closeall" => 'rushes#close_all', :as => :close_rushes
+   
+   post "rush" => "rushes#toggle_open_state"
+   
+   post "vote" => "rushes#vote"
+   
+   match "admin/rush_index" => "admin#rush_index"
+   
+   match "admin/:id/results" => 'admin#rush_results', :as => :results
+   
+   match "admin/rush_results" => 'admin#all_rush_results', :as => :all_results
+
+   match "admin/results/delete" => "admin#next_round", :as => :clear_round
+   
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

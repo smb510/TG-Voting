@@ -114,5 +114,24 @@ class RushesController < ApplicationController
     end
   end
   
+  def open_all
+    @rushes = Rush.all
+    @rushes.each do |rush|
+      rush.open = true
+      rush.save
+    end
+    redirect_to admin_url, :notice => "All Rushes Now Open For Voting"
+  end
+  
+  def close_all
+    @rushes = Rush.all
+    @rushes.each do |rush|
+      rush.open = false
+      rush.save
+    end
+    redirect_to admin_url, :notice => "All Rushes Now Closed for Voting"
+  end
+    
+  
   
 end

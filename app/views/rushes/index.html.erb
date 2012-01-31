@@ -1,26 +1,22 @@
-<h1>Listing rushes</h1>
+<%= javascript_include_tag "voting"%>
+<h1>Here are all Rushes who may be voted upon at this time.</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Mentions</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-<%= link_to 'New Rush', new_rush_path %>
-
-<% @rushes.each do |rush| %>
-  <tr>
-    <td><%= rush.name %></td>
-    <td><%= rush.mentions %></td>
-    <td><%= link_to 'Show', rush %></td>
-    <td><%= link_to 'Edit', edit_rush_path(rush) %></td>
-    <td><%= link_to 'Destroy', rush, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
+<%= flash[:notice]%>
+<table><tr><th>Matter</th><th>Vote</th><th></th></tr>
+<% @rushes.each do |rush|%>
+<tr>
+	<td><%= rush.name%></td>
+	<td><%= form_tag({:controller => "rushes", :action => "vote"}, :remote => true, :class => "vote_form" )  do %>
+		
+		<%= hidden_field_tag(:id, rush.id)%>
+		<%= radio_button_tag(:vote, "Yes")%>
+		<%= label_tag(:vote_Yes, "Yes")%>
+		<%= radio_button_tag(:vote, "No")%>
+		<%= label_tag(:vote_No, "No")%>
+		<%= radio_button_tag(:vote, "Abstain", :checked => true)%>
+		<%= label_tag(:vote_Abstain, "Abstain")%>
+		<%= submit_tag("Vote")%>
+		<%end%>
+		</td><td class="notes"></td></tr>
+<%end%>
 

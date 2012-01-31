@@ -1,0 +1,35 @@
+<h1>Deliberations Administrative Interface</h1>
+<h2>Use this to add rushes, view results of a vote, and open and close rushes for voting</h2>
+<%= flash[:notice]%><br />
+<%= link_to "Open All", open_questions_url%> | <%= link_to "Close All", close_questions_url%> | <%= link_to "Go to voting page", questions_url%>
+<table>
+	<tr><th>Rush Name</th><th>Open/Closed</th><th>View results</th><th>Delete</th></tr>
+	<% @rushes.each do |rush|%>
+	<tr>
+		<td><%= rush.name%></td>
+		<td><%= form_tag({:controller => "rushes", :action => "toggle_open_state"}, :method => :post)  do %>
+			<%= hidden_field_tag(:id, rush.id)%>
+			<% if rush.open%>
+			<%= radio_button_tag(:state, "Open", :checked=>true)%>
+			<%else%>
+			<%= radio_button_tag(:state, "Open")%>
+			<%end%>
+			<%=label_tag(:state_Open, "Open")%>
+			<%if question.open%>
+			<%= radio_button_tag(:state, "Close")%>
+			<%else%>
+			<%= radio_button_tag(:state, "Close", :checked=>true)%>
+			<%end%>
+			<%=label_tag(:state_Close, "Close")%>
+			<%= submit_tag("Change")%>
+			<%end%>
+			</td>
+			<td><%=link_to "View Results", results_url(:id => rush.id) %></td>
+			<td><%= link_to "Delete", del_rushes_url(:id => rush.id), :method => :delete%></tr>
+	
+	
+	<%end%>
+	</table>
+	
+	<%= link_to "View All Results", all_results_url%>
+	<%= link_to "Add new Rush", new_rush_path%>
