@@ -2,7 +2,8 @@ class RushesController < ApplicationController
   # GET /rushes
   # GET /rushes.json
   def index
-    @rushes = Rush.all
+    @rushes = Rush.where("open= ?", true)
+    @user = user.find_by(session[:user_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,6 +42,7 @@ class RushesController < ApplicationController
   # POST /rushes.json
   def create
     @rush = Rush.new(params[:rush])
+    @rush.open = false
 
     respond_to do |format|
       if @rush.save
@@ -81,4 +83,36 @@ class RushesController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def vote
+    @rush = Rush.find_by_id(params[:id])
+    @vote = @rush.delib_votes.build(:user => session[:user_id], :vote => params[:vote], :token => session[:user_id].to_s + "#" + @rush.id.to_s)
+    if @vote.save
+      if request.xhr?
+        render :status => 200, :text = @vote.vote
+      else
+        redirect_to rushes_url, :notice => "Your vote was recorded."
+      end
+    else
+      if request.xhr?
+        render :status => 403, :text => "Error."
+      else
+        redirect_to rushes_url, :error => "Vote not accepted."
+      end
+    end
+  end
+  
+  def toggle_open_state
+    @rush = Rush.find_by_id(params[:id])
+        if params[:state] == "Open"
+          @rush.open = true
+        elsif params[:state] == "Close"
+          @rush.open = false
+        end
+        @rush.save
+        redirect_to admin_url
+    end
+  end
+  
+  
 end
