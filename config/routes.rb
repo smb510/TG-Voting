@@ -8,6 +8,8 @@ OTElections::Application.routes.draw do
   get "rush_vote/tally"
 
   resources :rushes
+  
+  get 'rushes', 'rushes#index', :as => :rushes
 
   root :to => 'sessions#create'
    
