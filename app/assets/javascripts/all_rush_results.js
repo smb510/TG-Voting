@@ -1,6 +1,6 @@
 $(document).ready(function()
 {
-    $(".show-hide").click(function())
+    $(".show-hide").click(function()
     {
         if($(".detailed-results").hasClass("hidden"))
         {
