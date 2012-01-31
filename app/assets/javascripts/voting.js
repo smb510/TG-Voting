@@ -4,7 +4,7 @@ $(document).ready(function()
 	
 	$('form').submit(function(event)
 	{
-		var MAX_YES = 3;
+		var MAX_YES = 14;
 		event.preventDefault();
 		var t = $(this);
 		if($(".Yes").size() >= MAX_YES && t.find("#vote_Yes:checked").size() == 1)
