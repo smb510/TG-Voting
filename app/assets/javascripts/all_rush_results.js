@@ -9,6 +9,6 @@ $(document).ready(function()
         else
         {
             $(".detailed-results").addClass("hidden");
-    }   
-    }
+        }   
+    });
 });
