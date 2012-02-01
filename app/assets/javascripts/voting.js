@@ -15,6 +15,11 @@ $(document).ready(function()
        
 	$('form').submit(function(event)
 	{
+	    if($('form').hasClass('login'))
+	    {
+	        return;
+	    }
+	    
 		var MAX_YES = 14;
 		event.preventDefault();
 		var t = $(this);

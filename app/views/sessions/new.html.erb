@@ -3,7 +3,7 @@
 
 
 <div class="login_form">
-	<%= form_tag(:method => :post) do%>
+	<%= form_tag({}, {:method => "post", :class => "login"}) do%>
 		<label for="username">User Name:</label>
 		<%= text_field_tag :name, params[:name]%>
 		<label for="password">Password</label>

@@ -9726,9 +9726,9 @@ $(document).ready(function()
        
 	$('form').submit(function(event)
 	{
-	    if($('form').hasClass('login'))
+	    if $('form').hasClass('login')
 	    {
-	        return;
+	        return true;
 	    }
 	    
 		var MAX_YES = 14;
